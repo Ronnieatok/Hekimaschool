@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Hekima International School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #1c262f;
+            --secondary-color: #ad8327;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color:#333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 1.5rem 1rem;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('img/schoolbackground.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 10rem 0;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* About Content */
+        .about-content {
+            padding: 5rem 0;
+        }
+        
+        .mission-vision {
+            display: flex;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .mission, .vision {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .mission h2 {
+            color: var(--accent-color);
+        }
+        
+        .vision h2 {
+            color: var(--secondary-color);
+        }
+        
+        .history {
+            background: var(--light-color);
+            padding: 3rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        
+        .history-timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 2rem 0;
+        }
+        
+        .history-item {
+            position: relative;
+            padding-bottom: 2rem;
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 25px;
+        }
+        
+        .history-item:last-child {
+            padding-bottom: 0;
+        }
+        
+        .history-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+        }
+        
+        .history-year {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        /* Faculty Section */
+        .faculty {
+            padding: 3rem 0;
+            background: white;
+        }
+        
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .faculty-member {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faculty-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .faculty-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 5px solid var(--light-color);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--light-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .mission-vision {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/school icon_.png" alt="Hekima International School">
+                <h1>Hekima International School</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="admission.html">Admissions</a></li>
+                    <li><a href="contactus.php">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Hekima International School</h1>
+            <p>Educating minds, building character, and shaping futures since 2009</p>
+        </div>
+    </section>
+
+    <section class="about-content">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>Founded in 2009, Hekima International School has been a cornerstone of educational excellence in our community. We pride ourselves on nurturing young minds and preparing them for the challenges of tomorrow.
+
+Our mission is to provide a holistic education that develops critical thinking, creativity, and character in a supportive and inclusive environment.
+
+</p>
+            
+            <div class="mission-vision">
+                <div class="mission">
+                    <h2>Our Mission</h2>
+                    <p>To provide a transformative educational experience that empowers students to achieve their highest potential, become lifelong learners, and contribute meaningfully to society.</p>
+                </div>
+                <div class="vision">
+                    <h2>Our Vision</h2>
+                    <p>To be recognized as a leader in innovative education, developing future-ready graduates who excel academically, think critically, and act compassionately.</p>
+                </div>
+            </div>
+            
+            <div class="history">
+                <h2>Our History</h2>
+                <div class="history-timeline">
+                    <div class="history-item">
+                        <div class="history-year">2009</div>
+                        <p>Hekima Internation School founded with 50 students in temporary facilities</p>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2011</div>
+                        <p>Moved to current 20-acre campus with new elementary building</p>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2018</div>
+                        <p>Added high school program and STEM laboratory</p>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2021</div>
+                        <p>Awarded "Blue Ribbon School of Excellence" by the Department of Education</p>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2024</div>
+                        <p>Opened new performing arts center and robotics lab</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2>Our Campus</h2>
+            <p>Our 20-acre campus features state-of-the-art facilities designed to inspire learning and creativity:</p>
+            <ul>
+                <li>Modern classrooms with smartboard technology</li>
+                <li>Science and robotics laboratories</li>
+                <li>10,000 volume library with digital resources</li>
+                <li>Performing arts center with 300-seat theater</li>
+                <li>Athletic complex with gymnasium and sports fields</li>
+                <li>Outdoor learning spaces and nature trails</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="faculty">
+        <div class="container">
+            <h2>Meet Our Leadership</h2>
+            <div class="faculty-grid">
+                <div class="faculty-member">
+                    <img src="img/drsarah.jpeg" alt="Dr. Sarah Akai" class="faculty-img">
+                    <h3>Dr. Joyce Asinyo</h3>
+                    <p>Principal</p>
+                    <p>Ed.D. in Educational Leadership</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="img/mrdavid.jpeg" alt="Mr. Peter Lokato" class="faculty-img">
+                    <h3>Mr. Peter Lokato</h3>
+                    <p>Academic Director</p>
+                    <p>M.A. in Curriculum Development</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="img/mrsangela.jpeg" alt="Mrs. Isaura Epuyo " class="faculty-img">
+                    <h3>Mrs. Isaura Epuyo</h3>
+                    <p>Elementary Division Head</p>
+                    <p>M.Ed. in Elementary Education</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="img/mrjames.jpeg" alt="Mr. Gerard Lokol" class="faculty-img">
+                    <h3>Mr. Gerard Lokol</h3>
+                    <p>Secondary Division Head</p>
+                    <p>M.S. in Educational Administration</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="faculty.html" class="btn">View All Faculty</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admission.html">Admissions</a></li>
+                        <li><a href="contactus.php">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>376-30500 Vilakazi St</p>
+                    <p>Lodwar Turkana, Kenya </p>
+                    <p>Phone: +254705902590</p>
+                    <p>Email: info@hekimaschool.edu</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-media">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Hekima International School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

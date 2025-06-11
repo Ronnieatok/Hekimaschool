@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Faculty - Hekima International School</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #1c262f;
+            --secondary-color:  #ad8327;
+            --accent-color:#e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 1.5rem 1rem;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/faculty.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 10rem 0;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Faculty Section */
+        .faculty {
+            padding: 5rem 0;
+        }
+        
+        .department-filter {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .faculty-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .faculty-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .faculty-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .faculty-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .faculty-name {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .faculty-title {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .faculty-bio {
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .faculty-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .faculty-contact a {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .faculty-contact a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                margin-bottom: 2rem;
+            }
+            
+            .filter-btn {
+                margin: 0.3rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/school icon_.png" alt="Hekima International School">
+                <h1>Hekima International School</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="faculty.html" class="active">Our Faculty</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="admissions.html">Admissions</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Meet Our Faculty</h1>
+            <p>Dedicated educators inspiring excellence in every student</p>
+        </div>
+    </section>
+
+    <section class="faculty">
+        <div class="container">
+            <h2>Our Distinguished Educators</h2>
+            <p>At Hekima International School, our faculty members are more than just teachers - they're mentors, guides, and champions for student success. With an average of 15 years teaching experience and 85% holding advanced degrees, our educators bring passion and expertise to every classroom.</p>
+            
+            <div class="department-filter">
+                <button class="filter-btn active" data-department="all">All Faculty</button>
+                <button class="filter-btn" data-department="elementary">Elementary</button>
+                <button class="filter-btn" data-department="middle">Middle School</button>
+                <button class="filter-btn" data-department="high">High School</button>
+                <button class="filter-btn" data-department="special">Special Programs</button>
+            </div>
+            
+            <div class="faculty-grid">
+                <!-- Elementary Faculty -->
+                <div class="faculty-card" data-department="elementary">
+                    <img src="img/mrjennifer.jpeg" alt="Ms. Jennifer Adams" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Ms. Jennifer Adams</h3>
+                        <p class="faculty-title">Grade 3 Teacher</p>
+                        <p class="faculty-bio">M.Ed. in Elementary Education with 12 years of experience. Specializes in project-based learning and literacy development.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:jadams@hekimaschool.edu.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faculty-card" data-department="elementary">
+                    <img src="img/mrrobert.jpeg" alt="Mr. Robert Chen" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Mr. Robert Chen</h3>
+                        <p class="faculty-title">Grade 5 Teacher</p>
+                        <p class="faculty-bio">B.S. in Education with STEM certification. Leads our elementary robotics program and math olympiad team.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:rchen@hekimaschool.edu.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Middle School Faculty -->
+                <div class="faculty-card" data-department="middle">
+                    <img src="img/drmaria.jpeg" alt="Dr. Maria Gonzalez" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Dr. Maria Gonzalez</h3>
+                        <p class="faculty-title">Middle School Science</p>
+                        <p class="faculty-bio">Ph.D. in Science Education. Developed our award-winning environmental science curriculum.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:mgonzalez@hekimaschool.edu.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faculty-card" data-department="middle">
+                    <img src="img/mrwilson.jpeg" alt="Mr. David Wilson" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Mr. David Wilson</h3>
+                        <p class="faculty-title">Middle School English</p>
+                        <p class="faculty-bio">M.A. in English Literature. Published author and advisor to the student literary magazine.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:dwilson@hekimaschool.edu.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- High School Faculty -->
+                <div class="faculty-card" data-department="high">
+                    <img src="img/drsusan.jpeg" alt="Dr. Susan Park" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Dr. Susan Park</h3>
+                        <p class="faculty-title">AP Calculus & Physics</p>
+                        <p class="faculty-bio">Ph.D. in Physics. Former research scientist with NASA. 100% of her students pass AP exams.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:spark@hekimaschool.edu.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faculty-card" data-department="high">
+                    <img src="img/mrrodriguez.jpeg" alt="Mr. James Rodriguez" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Mr. James Rodriguez</h3>
+                        <p class="faculty-title">History Department Chair</p>
+                        <p class="faculty-bio">M.A. in History with 20 years experience. Leads our Model UN program and international study trips.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:jrodriguez@hekimaschool.edu.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Special Programs -->
+                <div class="faculty-card" data-department="special">
+                    <img src="img/msemily.jpeg" alt="Ms. Emily Thompson" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Ms. Emily Thompson</h3>
+                        <p class="faculty-title">Art Director</p>
+                        <p class="faculty-bio">B.F.A. from Rhode Island School of Design. Student artworks regularly win regional competitions.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:ethompson@hekimaschool.edu.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faculty-card" data-department="special">
+                    <img src="img/couchbrown.jpeg" alt="Coach Michael Brown" class="faculty-img">
+                    <div class="faculty-info">
+                        <h3 class="faculty-name">Coach Michael Brown</h3>
+                        <p class="faculty-title">Athletic Director</p>
+                        <p class="faculty-bio">Former professional athlete. Our teams have won 15 state championships under his leadership.</p>
+                        <div class="faculty-contact">
+                            <a href="mailto:mbrown@hekimaschool.edu"><i class="fas fa-envelope"></i></a>
+                            <a href="#"><i class="fas fa-user-graduate"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="faculty.html">Our Faculty</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>376-30500 Vilakazi Street</p>
+                    <p>Lodwar Turkana, Ke</p>
+                    <p>Phone: +254705902590</p>
+                    <p>Email: info@hekimaschool.edu</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-media">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Hekima International School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Faculty filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const facultyCards = document.querySelectorAll('.faculty-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const department = this.dataset.department;
+                
+                // Filter faculty cards
+                facultyCards.forEach(card => {
+                    if (department === 'all' || card.dataset.department === department) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

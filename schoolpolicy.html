@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Policies - Hekima International School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Policy Page Styles */
+        :root {
+            --primary: #ad8327;
+            --secondary: #e74c3c;;
+            --accent: #2c3e50;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .policy-header {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), 
+                        url('images/policy-bg.jpg');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px 80px;
+        }
+        
+        .policy-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .policy-section {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        .policy-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .policy-section h3 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+        }
+        
+        .policy-list {
+            margin-left: 20px;
+        }
+        
+        .policy-list li {
+            margin-bottom: 10px;
+        }
+        
+        .accordion {
+            margin-top: 20px;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background: var(--light);
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .accordion-header:hover {
+            background: #dfe6e9;
+        }
+        
+        .accordion-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content-inner {
+            padding: 20px;
+        }
+        
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: var(--light);
+            border-radius: 8px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .policy-header {
+                padding: 80px 15px 60px;
+            }
+            
+            .policy-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="policy-header">
+        <h1>School Policies</h1>
+        <p>Guidelines for a safe and productive learning environment</p>
+    </header>
+
+    <div class="policy-container">
+        <section class="policy-section">
+            <h2>Academic Policies</h2>
+            
+            <h3>Grading System</h3>
+            <ul class="policy-list">
+                <li>A (90-100%) - Outstanding achievement</li>
+                <li>B (80-89%) - Above average achievement</li>
+                <li>C (70-79%) - Average achievement</li>
+                <li>D (60-69%) - Below average achievement</li>
+                <li>F (Below 60%) - Failing</li>
+            </ul>
+            
+            <h3>Homework Policy</h3>
+            <p>Students are expected to complete assignments on time. Late work will be accepted with a 10% reduction per day up to 3 days late.</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Academic Integrity Policy</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Bright Future Academy maintains high standards of academic honesty. Violations include:</p>
+                            <ul class="policy-list">
+                                <li>Plagiarism in any form</li>
+                                <li>Unauthorized collaboration</li>
+                                <li>Cheating on examinations</li>
+                                <li>Falsification of data</li>
+                            </ul>
+                            <p><strong>Consequences:</strong> First offense results in a zero on the assignment and parental notification. Repeated offenses may lead to suspension.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2>Behavioral Policies</h2>
+            
+            <h3>Code of Conduct</h3>
+            <p>All students are expected to demonstrate respect, responsibility, and integrity at all times.</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Disciplinary Procedures</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <ol class="policy-list">
+                                <li><strong>Verbal Warning</strong> - For minor infractions</li>
+                                <li><strong>Written Warning</strong> - Documented notice to parents</li>
+                                <li><strong>Detention</strong> - After-school disciplinary session</li>
+                                <li><strong>Suspension</strong> - Temporary removal from school</li>
+                                <li><strong>Expulsion</strong> - Permanent removal for severe violations</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Anti-Bullying Policy</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Bright Future Academy has zero tolerance for bullying in any form:</p>
+                            <ul class="policy-list">
+                                <li>Physical aggression or threats</li>
+                                <li>Verbal harassment</li>
+                                <li>Cyberbullying</li>
+                                <li>Social exclusion</li>
+                            </ul>
+                            <p>All incidents will be investigated promptly and appropriate disciplinary action taken.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2>Attendance Policies</h2>
+            
+            <h3>Daily Attendance</h3>
+            <ul class="policy-list">
+                <li>Students must arrive by 8:15 AM</li>
+                <li>More than 3 unexcused absences per term may result in retention</li>
+                <li>Parents must notify the school before 8:30 AM for absences</li>
+            </ul>
+            
+            <h3>Tardiness</h3>
+            <p>Students arriving after 8:15 AM must check in at the office. Three tardies equal one absence.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Health & Safety Policies</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Illness Policy</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Students should remain home if they exhibit:</p>
+                            <ul class="policy-list">
+                                <li>Fever over 100°F</li>
+                                <li>Vomiting or diarrhea</li>
+                                <li>Contagious rash</li>
+                                <li>Persistent cough</li>
+                            </ul>
+                            <p>Students must be fever-free for 24 hours without medication before returning.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Medication Policy</span>
+                        <span>+</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <ul class="policy-list">
+                                <li>All medications must be stored in the nurse's office</li>
+                                <li>Prescription medications require doctor's authorization</li>
+                                <li>Students may not carry medication without approval</li>
+                                <li>Emergency medications (e.g., epipens) may be carried with proper documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2>Technology Policies</h2>
+            
+            <h3>Acceptable Use</h3>
+            <ul class="policy-list">
+                <li>Devices may only be used for educational purposes</li>
+                <li>Students must follow teacher instructions regarding technology use</li>
+                <li>School network use is monitored and filtered</li>
+            </ul>
+            
+            <h3>Prohibited Activities</h3>
+            <ul class="policy-list">
+                <li>Accessing inappropriate content</li>
+                <li>Using another student's account</li>
+                <li>Downloading unauthorized software</li>
+                <li>Cyberbullying or harassment</li>
+            </ul>
+        </section>
+
+        <section class="download-section">
+            <h3>Complete School Policy Handbook</h3>
+            <p>Download our full policy document for detailed information on all school policies and procedures.</p>
+            <a href="downloads/policy-handbook.pdf" class="download-btn">Download Handbook (PDF)</a>
+        </section>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items first
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.accordion-header span:last-child').textContent = '+';
+                });
+                
+                // Open current if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                    header.querySelector('span:last-child').textContent = '-';
+                }
+            });
+        });
+        
+        // Open first accordion by default
+        document.querySelector('.accordion-item')?.classList.add('active');
+        document.querySelector('.accordion-item .accordion-header span:last-child').textContent = '-';
+    </script>
+</body>
+</html>

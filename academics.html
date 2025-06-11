@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics - Hekima International School</title><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+        --primary:#e74c3c;
+            --secondary: #ad8327;
+            --accent: #2c3e50;
+            --light: #ecf0f1;
+            --dark: #2c3e50
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display',serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 1.5rem 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('img/academics.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 10rem 0;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Academics Content */
+        .academics-intro {
+            text-align: center;
+            padding: 5rem 0 3rem;
+        }
+        
+        .divisions {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .division-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .division-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .division-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .division-content {
+            padding: 1.5rem;
+        }
+        
+        .division-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .division-content .icon {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Curriculum Section */
+        .curriculum {
+            background: var(--light);
+            padding: 5rem 0;
+        }
+        
+        .subject-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .subject-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .subject-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Special Programs */
+        .special-programs {
+            padding: 5rem 0;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .program-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .program-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .program-body {
+            padding: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        
+        .footer-section h3 {
+            color: #ad8327;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--light);
+        }
+  
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .divisions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .division-card {
+                max-width: 500px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/school icon_.png" alt="Hekima International School">
+                <h1>Hekima International School</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="academics.html" class="active">Academics</a></li>
+                    <li><a href="admission.html">Admissions</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Academic Excellence</h1>
+            <p>Challenging minds, inspiring futures through innovative education</p>
+        </div>
+    </section>
+
+    <section class="academics-intro">
+        <div class="container">
+            <h2>Our Academic Programs</h2>
+            <p>At Bright Future Academy, we offer a comprehensive curriculum designed to prepare students for success in college, career, and life. Our programs combine rigorous academics with character development and real-world learning experiences.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="divisions">
+            <div class="division-card">
+                <img src="img/elementary" alt="Elementary School" class="division-img">
+                <div class="division-content">
+                    <div class="icon">
+                        <i class="fa-solid fa-chalkboard"></i>
+                    </div>
+                    <h3>Elementary School</h3>
+                    <p>Our K-5 program builds strong foundations in literacy, numeracy, and scientific thinking while fostering curiosity and a love of learning.</p>
+                    <ul>
+                        <li>Project-based learning</li>
+                        <li>Singapore Math curriculum</li>
+                        <li>Daily reading workshops</li>
+                        <li>STEM exploration</li>
+                    </ul>
+                    <a href="elementary.html" class="btn" style="margin-top: 1rem;">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="division-card">
+                <img src="img/background.jpeg" alt="Middle School" class="division-img">
+                <div class="division-content">
+                    <div class="icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Middle School</h3>
+                    <p>Grades 6-8 focus on developing critical thinking skills through interdisciplinary studies and exploratory electives.</p>
+                    <ul>
+                        <li>Advanced STEM courses</li>
+                        <li>Comprehensive arts program</li>
+                        <li>World language options</li>
+                        <li>Leadership development</li>
+                    </ul>
+                    <a href="middle-school.html" class="btn" style="margin-top: 1rem;">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="division-card">
+                <img src="img/highschool.jpg" alt="High School" class="division-img">
+                <div class="division-content">
+                    <div class="icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h3>High School</h3>
+                    <p>Our college-preparatory program offers advanced coursework, specialized electives, and comprehensive college counseling.</p>
+                    <ul>
+                        <li>18 AP courses offered</li>
+                        <li>Career pathway programs</li>
+                        <li>Undergraduate research</li>
+                        <li>Dual enrollment options</li>
+                    </ul>
+                    <a href="high-school.html" class="btn" style="margin-top: 1rem;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="curriculum">
+        <div class="container">
+            <h2 style="text-align: center;">Curriculum Overview</h2>
+            <p style="text-align: center;">Our comprehensive curriculum is aligned with state and national standards while incorporating innovative teaching methods.</p>
+            
+            <div class="subject-areas">
+                <div class="subject-card">
+                    <h4>English Language Arts</h4>
+                    <p>Literature, composition, grammar, and public speaking across all grade levels with a focus on critical analysis and creative expression.</p>
+                </div>
+                
+                <div class="subject-card">
+                    <h4>Mathematics</h4>
+                    <p>From basic numeracy to calculus, our math program emphasizes conceptual understanding and real-world applications.</p>
+                </div>
+                
+                <div class="subject-card">
+                    <h4>Science</h4>
+                    <p>Hands-on laboratory experiences in biology, chemistry, physics, and environmental science with inquiry-based learning.</p>
+                </div>
+                
+                <div class="subject-card">
+                    <h4>Social Studies</h4>
+                    <p>History, geography, economics, and government taught through multicultural perspectives and primary source analysis.</p>
+                </div>
+                
+                <div class="subject-card">
+                    <h4>World Languages</h4>
+                    <p>Spanish, French, and Mandarin Chinese offered from elementary through advanced levels with cultural immersion.</p>
+                </div>
+                
+                <div class="subject-card">
+                    <h4>Fine Arts</h4>
+                    <p>Visual arts, music, theater, and dance with performance and exhibition opportunities at all grade levels.</p>
+                </div>
+                
+                <div class="subject-card">
+                    <h4>Physical Education</h4>
+                    <p>Health, wellness, and team sports promoting lifelong fitness habits and social-emotional learning.</p>
+                </div>
+                
+                <div class="subject-card">
+                    <h4>Technology</h4>
+                    <p>Computer science, digital literacy, and engineering design integrated across all grades with maker spaces.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="special-programs">
+        <div class="container">
+            <h2 style="text-align: center;">Special Academic Programs</h2>
+            <p style="text-align: center;">Beyond our core curriculum, we offer specialized programs to meet diverse student interests and needs.</p>
+            
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>STEM Academy</h3>
+                    </div>
+                    <div class="program-body">
+                        <p>Advanced coursework and research opportunities in science, technology, engineering, and mathematics.</p>
+                        <ul>
+                            <li>Robotics competitions</li>
+                            <li>Summer research internships</li>
+                            <li>Industry mentorship</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Arts Conservatory</h3>
+                    </div>
+                    <div class="program-body">
+                        <p>Intensive training for students pursuing excellence in visual or performing arts.</p>
+                        <ul>
+                            <li>Master classes</li>
+                            <li>Portfolio development</li>
+                            <li>Performance tours</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Global Scholars</h3>
+                    </div>
+                    <div class="program-body">
+                        <p>Prepares students for global citizenship through advanced language study and international experiences.</p>
+                        <ul>
+                            <li>Model UN</li>
+                            <li>Exchange programs</li>
+                            <li>Global issues research</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="program-card">
+                    <div class="program-header">
+                        <h3>Learning Support</h3>
+                    </div>
+                    <div class="program-body">
+                        <p>Comprehensive support for students with learning differences or special needs.</p>
+                        <ul>
+                            <li>Individualized plans</li>
+                            <li>Small group instruction</li>
+                            <li>Assistive technology</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="admission.html" class="btn">Apply Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admission.html">Admissions</a></li>
+                        <li><a href="contactus.php">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>376-30500 Vilakazi Street</p>
+                    <p>Lodwar Turkana, Kenya</p>
+                    <p>Phone: +254705902590</p>
+                    <p>Email: info@hekimaschool.edu</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-media">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Hekima International School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

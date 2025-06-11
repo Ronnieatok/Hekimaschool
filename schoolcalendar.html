@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Calendar - Hekima International School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Calendar Page Styles */
+        :root {
+       --primary: #ad8327;
+            --secondary: #e74c3c;;
+            --accent: #2c3e50;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .calendar-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('img/calendar-bg.jpg');
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px 80px;
+        }
+        
+        .calendar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .calendar-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .calendar-nav-btns button {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        
+        .calendar-nav-btns button:hover {
+            background: var(--primary);
+        }
+        
+        .calendar-view-options {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .view-option {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .view-option.active {
+            border-bottom: 3px solid var(--secondary);
+            font-weight: 600;
+        }
+        
+        .view-option:hover {
+            background: var(--light);
+        }
+        
+        /* Month View */
+        .month-view {
+            display: block;
+        }
+        
+        .month-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+        }
+        
+        .day-header {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: 600;
+        }
+        
+        .day-cell {
+            min-height: 100px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background: white;
+        }
+        
+        .day-number {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .event {
+            background: var(--light);
+            padding: 3px 6px;
+            margin-bottom: 3px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        
+        .event.holiday {
+            background: #ffeaa7;
+        }
+        
+        .event.important {
+            background: #fab1a0;
+            color: white;
+        }
+        
+        .event.academic {
+            background: #a5b1c2;
+            color: white;
+        }
+        
+        /* List View */
+        .list-view {
+            display: none;
+        }
+        
+        .event-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .event-item {
+            background: white;
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .event-date {
+            font-weight: 600;
+            color: var(--primary);
+            min-width: 120px;
+        }
+        
+        .event-details {
+            flex-grow: 1;
+            padding: 0 20px;
+        }
+        
+        .event-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .event-category {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            background: var(--light);
+        }
+        
+        .event-category.holiday {
+            background: #ffeaa7;
+        }
+        
+        .event-category.important {
+            background: #fab1a0;
+            color: white;
+        }
+        
+        .event-category.academic {
+            background: #a5b1c2;
+            color: white;
+        }
+        
+        /* Event Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .modal-date {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .calendar-header {
+                padding: 80px 15px 60px;
+            }
+            
+            .month-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .day-cell {
+                min-height: auto;
+            }
+            
+            .event-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .event-date {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="calendar-header">
+        <h1>School Calendar</h1>
+        <p>2025-2026 Academic Year</p>
+    </header>
+
+    <div class="calendar-container">
+        <div class="calendar-nav">
+            <h2 class="calendar-title">January 2025</h2>
+            <div class="calendar-nav-btns">
+                <button id="prev-month">&lt; Previous</button>
+                <button id="today">Today</button>
+                <button id="next-month">Next &gt;</button>
+            </div>
+        </div>
+        
+        <div class="calendar-view-options">
+            <div class="view-option active" data-view="month">Month View</div>
+            <div class="view-option" data-view="list">List View</div>
+        </div>
+        
+        <!-- Month View -->
+        <div class="month-view" id="month-view">
+            <div class="month-grid">
+                <div class="day-header">Sunday</div>
+                <div class="day-header">Monday</div>
+                <div class="day-header">Tuesday</div>
+                <div class="day-header">Wednesday</div>
+                <div class="day-header">Thursday</div>
+                <div class="day-header">Friday</div>
+                <div class="day-header">Saturday</div>
+                
+                <!-- Calendar days will be inserted here by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- List View -->
+        <div class="list-view" id="list-view">
+            <ul class="event-list">
+                <li class="event-item">
+                    <div class="event-date">January 5</div>
+                    <div class="event-details">
+                        <div class="event-title">First Day of School</div>
+                        <span class="event-category important">Important</span>
+                    </div>
+                </li>
+                <li class="event-item">
+                    <div class="event-date">January 9</div>
+                    <div class="event-details">
+                        <div class="event-title">Back to School Night</div>
+                        <span class="event-category academic">Academic</span>
+                    </div>
+                </li>
+                <li class="event-item">
+                    <div class="event-date">January 30</div>
+                    <div class="event-details">
+                        <div class="event-title">Teacher Professional Day (No School)</div>
+                        <span class="event-category holiday">Holiday</span>
+                    </div>
+                </li>
+                <!-- More events will be inserted here by JavaScript -->
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="downloads/school-calendar.pdf" class="download-btn">Download Full Calendar (PDF)</a>
+        </div>
+    </div>
+    
+    <!-- Event Modal -->
+    <div class="modal" id="event-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title" id="modal-event-title">Event Title</h3>
+            <div class="modal-date" id="modal-event-date">January 5, 2025</div>
+            <div id="modal-event-description">
+                <p>Detailed description of the event will appear here.</p>
+                <p><strong>Time:</strong> 8:00 AM - 3:00 PM</p>
+                <p><strong>Location:</strong> School Campus</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Calendar Data
+        const calendarData = {
+            year: 2025,
+            month: 1, // January (0-11)
+            events: [
+                {
+                    id: 1,
+                    date: new Date(2025, 1, 5),
+                    title: "First Day of School",
+                    description: "Welcome back students! First day of the 2025-2026 academic year. Regular school hours apply.",
+                    category: "important",
+                    time: "8:00 AM - 3:00 PM",
+                    location: "School Campus"
+                },
+                {
+                    id: 2,
+                    date: new Date(2025, 1, 9),
+                    title: "Back to School Night",
+                    description: "Parents are invited to visit their child's classrooms and meet the teachers. Presentation by the principal at 6:30 PM in the auditorium.",
+                    category: "academic",
+                    time: "6:00 PM - 8:00 PM",
+                    location: "School Campus"
+                },
+                {
+                    id: 3,
+                    date: new Date(2025, 1, 11),
+                    title: "School Pictures Day",
+                    description: "Individual student portraits will be taken. Please wear school uniform.",
+                    category: "academic",
+                    time: "During school hours",
+                    location: "Gymnasium"
+                },
+                {
+                    id: 4,
+                    date: new Date(2025, 1, 15),
+                    title: "PTA Meeting",
+                    description: "Monthly Parent-Teacher Association meeting. All parents are welcome to attend.",
+                    category: "academic",
+                    time: "7:00 PM - 8:30 PM",
+                    location: "Library"
+                },
+                {
+                    id: 5,
+                    date: new Date(2025, 1, 25),
+                    title: "Early Dismissal",
+                    description: "Professional development for teachers. Students will be dismissed at 12:00 PM.",
+                    category: "academic",
+                    time: "8:00 AM - 12:00 PM",
+                    location: "School Campus"
+                },
+                {
+                    id: 6,
+                    date: new Date(2025, 1, 30),
+                    title: "Teacher Professional Day (No School)",
+                    description: "School closed for students. Teachers will be participating in professional development workshops.",
+                    category: "holiday",
+                    time: "All Day",
+                    location: ""
+                }
+            ]
+        };
+
+        // DOM Elements
+        const monthView = document.getElementById('month-view');
+        const listView = document.getElementById('list-view');
+        const viewOptions = document.querySelectorAll('.view-option');
+        const monthGrid = document.querySelector('.month-grid');
+        const calendarTitle = document.querySelector('.calendar-title');
+        const eventList = document.querySelector('.event-list');
+        const eventModal = document.getElementById('event-modal');
+        const modalTitle = document.getElementById('modal-event-title');
+        const modalDate = document.getElementById('modal-event-date');
+        const modalDescription = document.getElementById('modal-event-description');
+        const closeModal = document.querySelector('.close-modal');
+        
+        // Initialize Calendar
+        function initCalendar() {
+            renderMonthView();
+            renderListView();
+            setActiveView('month');
+        }
+        
+        // Render Month View
+        function renderMonthView() {
+            // Clear existing days (except headers)
+            while (monthGrid.children.length > 7) {
+                monthGrid.removeChild(monthGrid.lastChild);
+            }
+            
+            const year = calendarData.year;
+            const month = calendarData.month;
+            
+            // Update calendar title
+            const monthNames = ["January", "February", "March", "April", "May", "June", 
+                              "July", "August", "January", "October", "November", "December"];
+            calendarTitle.textContent = `${monthNames[month]} ${year}`;
+            
+            // Get first day of month and total days
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'day-cell empty';
+                monthGrid.appendChild(emptyCell);
+            }
+            
+            // Add cells for each day of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayCell = document.createElement('div');
+                dayCell.className = 'day-cell';
+                
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = day;
+                dayCell.appendChild(dayNumber);
+                
+                // Add events for this day
+                const currentDate = new Date(year, month, day);
+                const dayEvents = calendarData.events.filter(event => 
+                    event.date.getDate() === currentDate.getDate() && 
+                    event.date.getMonth() === currentDate.getMonth() && 
+                    event.date.getFullYear() === currentDate.getFullYear()
+                );
+                
+                dayEvents.forEach(event => {
+                    const eventElement = document.createElement('div');
+                    eventElement.className = `event ${event.category}`;
+                    eventElement.textContent = event.title;
+                    eventElement.dataset.eventId = event.id;
+                    eventElement.addEventListener('click', () => showEventModal(event));
+                    dayCell.appendChild(eventElement);
+                });
+                
+                monthGrid.appendChild(dayCell);
+            }
+        }
+        
+        // Render List View
+        function renderListView() {
+            // Clear existing events
+            while (eventList.children.length > 0) {
+                eventList.removeChild(eventList.firstChild);
+            }
+            
+            // Sort events by date
+            const sortedEvents = [...calendarData.events].sort((a, b) => a.date - b.date);
+            
+            // Add events to list
+            sortedEvents.forEach(event => {
+                const eventItem = document.createElement('li');
+                eventItem.className = 'event-item';
+                
+                const eventDate = document.createElement('div');
+                eventDate.className = 'event-date';
+                eventDate.textContent = formatDate(event.date);
+                eventItem.appendChild(eventDate);
+                
+                const eventDetails = document.createElement('div');
+                eventDetails.className = 'event-details';
+                
+                const eventTitle = document.createElement('div');
+                eventTitle.className = 'event-title';
+                eventTitle.textContent = event.title;
+                eventDetails.appendChild(eventTitle);
+                
+                const eventCategory = document.createElement('span');
+                eventCategory.className = `event-category ${event.category}`;
+                eventCategory.textContent = event.category.charAt(0).toUpperCase() + event.category.slice(1);
+                eventDetails.appendChild(eventCategory);
+                
+                eventItem.appendChild(eventDetails);
+                eventItem.addEventListener('click', () => showEventModal(event));
+                
+                eventList.appendChild(eventItem);
+            });
+        }
+        
+        // Format date for display
+        function formatDate(date) {
+            const options = { month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+        
+        // Show event modal
+        function showEventModal(event) {
+            modalTitle.textContent = event.title;
+            modalDate.textContent = formatDate(event.date);
+            
+            let descriptionHTML = `<p>${event.description}</p>`;
+            if (event.time) {
+                descriptionHTML += `<p><strong>Time:</strong> ${event.time}</p>`;
+            }
+            if (event.location) {
+                descriptionHTML += `<p><strong>Location:</strong> ${event.location}</p>`;
+            }
+            
+            modalDescription.innerHTML = descriptionHTML;
+            eventModal.style.display = 'flex';
+        }
+        
+        // Close modal
+        function closeEventModal() {
+            eventModal.style.display = 'none';
+        }
+        
+        // Set active view
+        function setActiveView(view) {
+            viewOptions.forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.view === view) {
+                    option.classList.add('active');
+                }
+            });
+            
+            monthView.style.display = view === 'month' ? 'block' : 'none';
+            listView.style.display = view === 'list' ? 'block' : 'none';
+        }
+        
+        // Event Listeners
+        viewOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                setActiveView(option.dataset.view);
+            });
+        });
+        
+        closeModal.addEventListener('click', closeEventModal);
+        window.addEventListener('click', (e) => {
+            if (e.target === eventModal) {
+                closeEventModal();
+            }
+        });
+        
+        document.getElementById('prev-month').addEventListener('click', () => {
+            calendarData.month--;
+            if (calendarData.month < 0) {
+                calendarData.month = 11;
+                calendarData.year--;
+            }
+            renderMonthView();
+        });
+        
+        document.getElementById('next-month').addEventListener('click', () => {
+            calendarData.month++;
+            if (calendarData.month > 11) {
+                calendarData.month = 0;
+                calendarData.year++;
+            }
+            renderMonthView();
+        });
+        
+        document.getElementById('today').addEventListener('click', () => {
+            const today = new Date();
+            calendarData.month = today.getMonth();
+            calendarData.year = today.getFullYear();
+            renderMonthView();
+        });
+        
+        // Initialize
+        initCalendar();
+    </script>
+</body>
+</html>

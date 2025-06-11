@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions - Hekima International School</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #1c262f;
+            --secondary-color:  #ad8327;
+            --accent-color:#e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 1.5rem 1rem;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/admission.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 10rem 0;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Admissions Content */
+        .admissions-content {
+            padding: 5rem 0;
+        }
+        
+        .admissions-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .step h3 {
+            color: var(--primary-color);
+        }
+        
+        /* Tuition Section */
+        .tuition {
+            background: var(--light-color);
+            padding: 3rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        
+        .tuition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .tuition-table th, .tuition-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tuition-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .tuition-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.5);
+        }
+        
+        /* Financial Aid */
+        .financial-aid {
+            margin: 3rem 0;
+        }
+        
+        .aid-options {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .aid-option {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .aid-option h3 {
+            color: var(--secondary-color);
+        }
+        
+        /* Application Form */
+        .application {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--light-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                max-width: 400px;
+                margin-bottom: 2rem;
+            }
+            
+            .aid-options {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section {
+                margin-bottom: 2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/school icon_.png" alt="Hekima International School">
+                <h1>Hekima International School</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="faculty.html">Our Faculty</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="admission.html" class="active">Admissions</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Admissions</h1>
+            <p>Begin your journey to academic excellence</p>
+            <a href="#apply" class="btn btn-accent">Apply Now</a>
+        </div>
+    </section>
+
+    <section class="admissions-content">
+        <div class="container">
+            <div class="admissions-intro">
+                <h2>Join Our Learning Community</h2>
+                <p>At Hekima International School, we seek students who demonstrate academic potential, curiosity, and a commitment to personal growth. Our admissions process is designed to identify students who will thrive in our challenging and supportive environment.</p>
+            </div>
+            
+            <h2>Admissions Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Inquiry</h3>
+                    <p>Submit an inquiry form or attend an open house to learn more about our programs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Application</h3>
+                    <p>Complete our online application and submit required documents.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Assessment</h3>
+                    <p>Students complete age-appropriate assessments (grades 1-12).</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Interview</h3>
+                    <p>Family interview with admissions staff (parents and student).</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Decision</h3>
+                    <p>Admissions decision communicated within 2 weeks.</p>
+                </div>
+            </div>
+            
+            <div class="tuition">
+                <h2>Tuition & Fees (2023-2024 Academic Year)</h2>
+                <table class="tuition-table">
+                    <thead>
+                        <tr>
+                            <th>Grade Level</th>
+                            <th>Tuition</th>
+                            <th>Technology Fee</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pre-K (Half Day)</td>
+                            <td>KES 500,000</td>
+                            <td>KES 400,000</td>
+                            <td>KES 900,000</td>
+                        </tr>
+                        <tr>
+                            <td>Kindergarten</td>
+                            <td>KES 400,000</td>
+                            <td>KES 300,000</td>
+                            <td>KES 700,000</td>
+                        </tr>
+                        <tr>
+                            <td>Grades 1-5</td>
+                            <td>KES,2,000,000</td>
+                            <td>KES 500,000</td>
+                            <td>KES 2,500,000</td>
+                        </tr>
+                        <tr>
+                            <td>Grades 6-8</td>
+                            <td>KES 3,000,000</td>
+                            <td>KES 1,000,000</td>
+                            <td>KES 4,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>Grades 9-12</td>
+                            <td>KES,4,000,000</td>
+                            <td>KES 1,500,000</td>
+                            <td>KES 5,500,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>* Additional fees may apply for extracurricular activities, field trips, and specialized programs.</p>
+            </div>
+            
+            <div class="financial-aid">
+                <h2>Financial Aid & Scholarships</h2>
+                <p>We believe financial circumstances should not prevent qualified students from attending Hekima International School. Approximately 30% of our students receive some form of financial assistance.</p>
+                
+                <div class="aid-options">
+                    <div class="aid-option">
+                        <h3>Need-Based Aid</h3>
+                        <p>Available for families demonstrating financial need. Awards range from 10-90% of tuition.</p>
+                        <p><strong>Deadline:</strong> March 1 for returning students, April 1 for new students</p>
+                    </div>
+                    <div class="aid-option">
+                        <h3>Merit Scholarships</h3>
+                        <p>Awarded to students demonstrating exceptional academic achievement or talent in arts/athletics.</p>
+                        <p><strong>Deadline:</strong> February 15</p>
+                    </div>
+                    <div class="aid-option">
+                        <h3>Payment Plans</h3>
+                        <p>Flexible monthly payment options available to spread tuition costs over 10 months.</p>
+                        <p><strong>No additional fees</strong> for payment plans.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="financial-aid.html" class="btn">Learn More About Financial Aid</a>
+                </div>
+            </div>
+            
+            <div class="application" id="apply">
+                <h2>Application Form</h2>
+                <form id="admissionsForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Student First Name*</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Student Last Name*</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthdate">Date of Birth*</label>
+                        <input type="date" id="birthdate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="grade">Grade Applying For*</label>
+                        <select id="grade" required>
+                            <option value="">Select Grade Level</option>
+                            <option value="prek">Pre-Kindergarten</option>
+                            <option value="k">Kindergarten</option>
+                            <option value="1">Grade 1</option>
+                            <option value="2">Grade 2</option>
+                            <option value="3">Grade 3</option>
+                            <option value="4">Grade 4</option>
+                            <option value="5">Grade 5</option>
+                            <option value="6">Grade 6</option>
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentName">Parent/Guardian Name*</label>
+                            <input type="text" id="parentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentEmail">Parent/Guardian Email*</label>
+                            <input type="email" id="parentEmail" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentPhone">Parent/Guardian Phone*</label>
+                            <input type="tel" id="parentPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentSchool">Current School (if applicable)</label>
+                            <input type="text" id="currentSchool">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comments">Additional Information</label>
+                        <textarea id="comments"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required> I acknowledge that all information provided is accurate*
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-accent">Submit Application</button>
+                </form>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p>Have questions about admissions? <a href="contact.php">Contact our admissions office</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faculty.html">Our Faculty</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="admission.html">Admissions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>376-30500 Vilakazi Street Street</p>
+                    <p>Lodwar Turkana, ke</p>
+                    <p>Phone: +254705902590</p>
+                    <p>Email: admissions@hekimaschool.edu</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-media">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Hekima International School. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Form submission
+        document.getElementById('admissionsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For this example, we'll just show an alert
+            
+            alert('Thank you for your application! We will contact you shortly with next steps.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
